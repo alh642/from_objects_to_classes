@@ -25,12 +25,18 @@ function draw() {
   balls.ball1.y += balls.ball1.dy;
   circle(balls.ball1.x, balls.ball1.y, 50);
   
-  // if the object hits the bottom of the canvas
-  // make it go up instead of down
-  if (balls.ball0.y >= height) {
+  // if the object hits the edges of the canvas
+  // make it bounce off
+  if (balls.ball0.y < 0 || balls.ball0.y > windowHeight) {
     balls.ball0.dy = -0.95 * balls.ball0.dy;
   }
-  if (balls.ball1.y >= height) {
+  if (balls.ball1.y < 0 || balls.ball1.y > windowHeight) {
+    balls.ball1.dy = -0.95 * balls.ball1.dy;
+  }
+  if (balls.ball0.x < 0 || balls.ball0.x > windowWidth) {
+    balls.ball0.dy = -0.95 * balls.ball0.dy;
+  }
+  if (balls.ball1.x < 0 || balls.ball1.x > windowWidth) {
     balls.ball1.dy = -0.95 * balls.ball1.dy;
   }
 }
