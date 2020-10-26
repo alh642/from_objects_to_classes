@@ -2,41 +2,41 @@ let balls = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  balls.ball0 = {
-    x: random(width),
-    y: random(height),
-    dy: (-1, 1),
-  }
-  balls.ball1 = {
-    x: random(width),
-    y: random(height),
-    dy: (-1, 1),
+  for (let i = 0; i < 100; i++) {
+    balls[i] = new Ball();
   }
 }
 
 function draw() {
-  background(200);
-  
-  balls.ball0.x += balls.ball0.dy;
-  balls.ball0.y += balls.ball0.dy;
-  circle(balls.ball0.x, balls.ball0.y, 50);
-  
-  balls.ball1.x += balls.ball1.dy;
-  balls.ball1.y += balls.ball1.dy;
-  circle(balls.ball1.x, balls.ball1.y, 50);
-  
-  // if the object hits the edges of the canvas
-  // make it bounce off
-  if (balls.ball0.y < 0 || balls.ball0.y > windowHeight) {
-    balls.ball0.dy = -0.95 * balls.ball0.dy;
+  background('black');
+
+  for (let i = 0; i < balls.length; i++) {
+    balls[i].update();
+    balls[i].display();
   }
-  if (balls.ball1.y < 0 || balls.ball1.y > windowHeight) {
-    balls.ball1.dy = -0.95 * balls.ball1.dy;
+}
+
+class Ball {
+  constructor() {
+    this.x = random(width);
+    this.y = random(height);
+    this.speedX = random(-1, 1);
+    this.speedY = random(-1, 1);
   }
-  if (balls.ball0.x < 0 || balls.ball0.x > windowWidth) {
-    balls.ball0.dy = -0.95 * balls.ball0.dy;
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // objects bounce off edges of canvas 
+    if(this.x < 0 || this.x > windowWidth) {
+      this.speedX = this.speedX * -0.95;
+    }
+    if(this.y < 0 || this.y > windowHeight) {
+      this.speedY = this.speedY * -0.95;
+    }
   }
-  if (balls.ball1.x < 0 || balls.ball1.x > windowWidth) {
-    balls.ball1.dy = -0.95 * balls.ball1.dy;
+  display() {
+    noStroke();
+    circle(this.x, this.y, 30);
   }
 }
