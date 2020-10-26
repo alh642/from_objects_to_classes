@@ -1,14 +1,13 @@
-let ball0;
-let ball1;
+let balls = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  ball0 = {
+  balls.ball0 = {
     x: random(width),
     y: random(50),
     dy: 0,
   }
-  ball1 = {
+  balls.ball1 = {
     x: random(width),
     y: random(50),
     dy: 0,
@@ -17,18 +16,18 @@ function setup() {
 
 function draw() {
   background(200);
-  ball0.y += ball0.dy;
-  ball0.dy += 0.25;
-  circle(ball0.x, ball0.y, 50);
-  ball1.y += ball1.dy;
-  ball1.dy += 0.25;
-  circle(ball1.x, ball1.y, 50);
+  balls.ball0.y += balls.ball0.dy;
+  balls.ball0.dy += 0.25;
+  circle(balls.ball0.x, balls.ball0.y, 50);
+  balls.ball1.y += balls.ball1.dy;
+  balls.ball1.dy += 0.25;
+  circle(balls.ball1.x, balls.ball1.y, 50);
   // if the object hits the bottom of the canvas
   // make it go up instead of down
-  if (ball0.y >= height) {
-    ball0.dy = -0.95 * ball0.dy;
+  if (balls.ball0.y >= height) {
+    balls.ball0.dy = -0.95 * balls.ball0.dy;
   }
-  if (ball1.y >= height) {
-    ball1.dy = -0.95 * ball1.dy;
+  if (balls.ball1.y >= height) {
+    balls.ball1.dy = -0.95 * balls.ball1.dy;
   }
 }
